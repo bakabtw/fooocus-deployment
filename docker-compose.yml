@@ -10,7 +10,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - ./repositories:/app/repositories
-      - ./cache:/root/.cache/pip
+      - fooocus-api-cache:/root/.cache/pip
     ports:
       - "8888:8888/tcp"
     deploy:
@@ -20,3 +20,6 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+volumes:
+  fooocus-api-cache:
