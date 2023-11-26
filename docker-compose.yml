@@ -13,8 +13,7 @@ services:
       - ./cache:/root/.cache/pip
     ports:
       - "8888:8888/tcp"
-
-deploy:
+    deploy:
       resources:
         reservations:
           devices:
