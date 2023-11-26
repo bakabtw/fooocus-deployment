@@ -1,0 +1,15 @@
+version: 3
+
+services:
+  fooocus-api:
+    image: konieshadow/fooocus-api:latest
+    container_name: fooocus-api
+    restart: unless-stopped
+    environment:
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./repositories:/app/repositories
+      - ./cache:/root/.cache/pip
+    ports:
+      - "8888:8888/tcp"
