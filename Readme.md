@@ -1,4 +1,4 @@
-# Fooocus-API installation
+# Установка Fooocus-API
 
 ## Добавляем репозитории Nvidia
 ```
@@ -8,43 +8,43 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dear
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 ```
 
-# Обновляем пакеты
+## Обновляем пакеты
 ```
 sudo apt update
 ```
 
-# Обновляем систему
+## Обновляем систему
 ```
 sudo apt upgrade
 ```
 
-# Устанавливаем зависимости
+## Устанавливаем зависимости
 ```
 sudo apt install nvidia-container-toolkit docker.io docker-compose
 ```
 
-# Разрешаем пользователю `ubuntu` работать с Docker
+## Разрешаем пользователю `ubuntu` работать с Docker
 ```
 sudo usermod -aG docker ubuntu
 ```
 
-# Перезагружаем ОС после обновления ядра
+## Перезагружаем ОС после обновления ядра
 ```
 sudo reboot
 ```
 
-# Настраиваем NVIDIA Container Toolkit
+## Настраиваем NVIDIA Container Toolkit
 ```
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
-# Клонируем репозиторий
+## Клонируем репозиторий
 ```
 git clone https://github.com/bakabtw/fooocus-deployment
 ```
 
-# Редактируем `.env`
+## Редактируем `.env`
 ```
 nano fooocus-deployment/.env
 ```
@@ -58,7 +58,7 @@ SENTRY_DSN=https://eb6e0859babea108edd6bd36b143822a@o4506291540852736.ingest.sen
 - `BASE_URL` - URL для доступа к Fooocus-API (без "`/`" в конце)
 - `SENTRY_DSN` - URL для отчётов Sentry
 
-# Запускаем сервисы
+## Запускаем сервисы
 ```
 cd fooocus-deployment/
 docker-compose up -d
