@@ -39,16 +39,27 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
-# Создаем необходимые папки для кэша
+# Клонируем репозиторий
 ```
-mkdir ~/repositories
-mkdir -p ~/.cache/pip
+git clone https://github.com/bakabtw/fooocus-deployment
 ```
 
-# Запускаем контейнер
+# Редактируем `.env`
 ```
-docker run --gpus=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility -e NVIDIA_VISIBLE_DEVICES=all \
-    -v ~/repositories:/app/repositories \
-    -v ~/.cache/pip:/root/.cache/pip \
-    -p 8888:8888 konieshadow/fooocus-api
+nano fooocus-deployment/.env
+```
+
+Пример файла `.env` приведен ниже:
+```
+BASE_URL=http://81.94.159.37:8888
+SENTRY_DSN=https://eb6e0859babea108edd6bd36b143822a@o4506291540852736.ingest.sentry.io/4506291542818816
+```
+
+- `BASE_URL` - URL для доступа к Fooocus-API (без "`/`" в конце)
+- `SENTRY_DSN` - URL для отчётов Sentry
+
+# Запускаем сервисы
+```
+cd fooocus-deployment/
+docker-compose up -d
 ```
